@@ -48,12 +48,20 @@ export default function App() {
     }
   };
 
+  const onClick = (id) => {
+    setPokemons((prev) => shuffleArray(prev))
+  }
+
   return (
     <>
       <Score />
       <div className="cards-container">
         {pokemons.map(pokemon => (
-          <Card key={pokemon.id} pokemon={pokemon}/>
+          <Card 
+            key={pokemon.id} 
+            pokemon={pokemon} 
+            onClick={() => onClick(pokemon.id)}
+          />
         ))}
       </div>
     </>
