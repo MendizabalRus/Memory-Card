@@ -1,11 +1,14 @@
 .card {
     aspect-ratio: 1 / 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
-    padding: 20px;
+    padding: 10px;
     border: 1px solid white;
     border-radius: 10px;
     transition: transform 500ms ease;
-    
 }
 
 .card:hover {
