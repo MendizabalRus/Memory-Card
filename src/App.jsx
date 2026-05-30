@@ -1,3 +1,6 @@
+import Score from "./components/score.jsx"
+import Card from "./components/card.jsx"
+
 import './App.css'
 
 export default function App() {
@@ -5,7 +8,10 @@ export default function App() {
 
   return (
     <>
-      
+      <Score />
+      <div className="cards-container">
+        <Card />
+      </div>
     </>
   )
 }
