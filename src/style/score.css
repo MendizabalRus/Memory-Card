@@ -23,3 +23,7 @@
     flex-direction: column;
     align-items: center;
 }
+
+.score-current-score-number.win {
+    color: green;
+}
