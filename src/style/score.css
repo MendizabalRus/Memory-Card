@@ -4,6 +4,13 @@
     padding: 40px;
     border: 1px solid white;
     border-radius: 10px;
+    font-family: var(--font-family);
+    box-shadow: var(--box-shadow);
+    font-size: large;
+}
+
+.score > div p:last-of-type {
+    font-size: xx-large;
 }
 
 .score-current-score {

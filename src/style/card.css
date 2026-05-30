@@ -1,5 +1,14 @@
 .card {
-    padding: 60px;
+    aspect-ratio: 1 / 1;
+    
+    padding: 20px;
     border: 1px solid white;
     border-radius: 10px;
+    transition: transform 500ms ease;
+    
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--box-shadow);
 }

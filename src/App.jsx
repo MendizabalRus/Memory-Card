@@ -11,6 +11,17 @@ export default function App() {
       <Score />
       <div className="cards-container">
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </>
   )
