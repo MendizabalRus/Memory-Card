@@ -21,6 +21,13 @@
     grid-template-columns: repeat(6, 1fr);
 }
 
+.win-message {
+    position: absolute;
+    bottom: 620px;
+    font-family: var(--font-family);
+    font-size: large;
+}
+
 @media (max-width: 1200px) {
     .cards-container {
         grid-template-columns: repeat(4, 1fr);

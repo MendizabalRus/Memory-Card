@@ -34,10 +34,19 @@ export default function App() {
   // BEST SCOREBOARD STATE
   const [bestScoreboard, setBestScoreboard] = useState(0);
 
+  // GAME FINISHED STATE
+  const [gameFinished, setGameFinished] = useState(false);
+
   // EFFECT FOR SYNCING API REQUEST WITH RENDERING
   useEffect(() => {
     getPokemons()
   }, []);
+
+  // EFFECT FOR SYNCING CURRENTSCOREBOARD WITH REAL VALUE (AVOID OFF-BY-ONE)
+  useEffect(() => {
+      // GAME FINISHED? CALL GAMEWON AND FINISH THE GAME
+      currentScoreboard === pokemons.length ? gameWon() : null;
+    }, [currentScoreboard])
 
   // FETCH DATA FROM THE API
   const getPokemons = async () => {
@@ -64,11 +73,20 @@ export default function App() {
 
   // GAME HANDLER FUNCTION
   const onClick = (id) => {
+    // IN CASE LAST GAME WAS WON, SET THE GAMEFINISHED STATE TO FALSE NOW SO THE CONGRATS TEXT DISSAPERS ON NEXT CLICK
+    setGameFinished(false);
+    
     // CARD HAS BEEN CLICKED?
     clickedCards.includes(id) ? restartGame() : nextRound(id);
     
     // SHUFFLE CARDS
     setPokemons((prev) => shuffleArray(prev));
+  };
+
+  // GAME WON
+  const gameWon = () => {
+    // SET GAME FINISHED STATE TO TRUE
+    setGameFinished(prev => !prev);
   };
 
   // NEXT ROUND
@@ -98,6 +116,7 @@ export default function App() {
         currentScoreboard={currentScoreboard}
         bestScoreboard={bestScoreboard}
       />
+      {gameFinished && (<div className="win-message">That's a <i> nice brain </i> you got there kid.</div>)}
       <div className="cards-container">
         {pokemons.map(pokemon => (
           <Card 
