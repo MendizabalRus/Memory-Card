@@ -28,8 +28,11 @@ export default function App() {
   // CLICKED CARDS STATE ARRAY
   const [clickedCards, setClickedCards] = useState([]);
 
-  // SCOREBOARD STATE
-  const [scoreboard, setScoreboard] = useState(0);
+  // CURRENT SCOREBOARD STATE
+  const [currentScoreboard, setCurrentScoreboard] = useState(0);
+
+  // BEST SCOREBOARD STATE
+  const [bestScoreboard, setBestScoreboard] = useState(0);
 
   // EFFECT FOR SYNCING API REQUEST WITH RENDERING
   useEffect(() => {
@@ -70,30 +73,30 @@ export default function App() {
 
   // NEXT ROUND
   const nextRound = (id) => {
-    // +1 TO SCOREBOARD
-    setScoreboard(prev => prev + 1);
+    // +1 TO currentScoreboard
+    setCurrentScoreboard(prev => prev + 1);
 
     // ADD CLICKED CARD TO CLICKED CARDS ARRAY
     setClickedCards(prev => [...prev, id]);
-    
-    console.log(scoreboard)
   };
 
   // GAME RESTART
   const restartGame = () => {
-    // RESTART SCOREBOARD
-    setScoreboard(0);
+    // COMPARE AND SET BEST SCORE
+    currentScoreboard > bestScoreboard ? setBestScoreboard(currentScoreboard) : null;
+
+    // RESTART currentScoreboard
+    setCurrentScoreboard(0);
     
     // EMPTY CLICKED CARDS STATE
     setClickedCards([]);
-    
-    console.log(scoreboard)
   };
 
   return (
     <>
       <Score 
-        scoreboard={scoreboard}
+        currentScoreboard={currentScoreboard}
+        bestScoreboard={bestScoreboard}
       />
       <div className="cards-container">
         {pokemons.map(pokemon => (
